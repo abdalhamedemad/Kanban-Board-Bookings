@@ -1,22 +1,44 @@
 import { useForm } from "react-hook-form";
 import Button from "../ui/Button.js";
 import { useBookings } from "../context/bookingsContext.js";
-
-function CreateBookingForm() {
+import DeleteMessage from "../ui/DeleteMessage.js";
+import { useState } from "react";
+function CreateBookingForm({ bookingToEdit = {}, closeModal }) {
+  const isEditing = Object.keys(bookingToEdit).length > 0;
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm();
+  } = useForm({
+    defaultValues: isEditing ? bookingToEdit : {},
+  });
   const bookings = useBookings();
+  const [showDeleteMessage, setShowDeleteMessage] = useState(false);
+  const confirmDelete = (e) => {
+    e.preventDefault();
+    bookings.deleteBooking(bookingToEdit.id);
+    alert("Form deleted successfully!");
+    closeModal();
+  };
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    setShowDeleteMessage(true);
+  };
 
   const onSubmit = (data) => {
-    data.status = "unclaimed";
-    console.log(bookings);
-    bookings.createNewBooking(data);
-    alert("Form submitted successfully!");
-    reset();
+    if (isEditing) {
+      bookings.updateBooking(bookingToEdit.id, data);
+      alert("Form updated successfully!");
+      closeModal();
+    } else {
+      data.status = "unclaimed";
+      console.log(bookings);
+      bookings.createNewBooking(data);
+      alert("Form submitted successfully!");
+      reset();
+    }
   };
   return (
     <div className="flex flex-col gap-6 ">
@@ -126,8 +148,21 @@ function CreateBookingForm() {
             )}
           </div>
         </div>
-
-        <Button type="primary">Submit</Button>
+        <div>
+          <Button type="primary">
+            {isEditing ? "Update Booking" : "Create Booking"}
+          </Button>
+          {isEditing && (
+            <Button type="danger" onClick={handleDelete}>
+              Delete
+            </Button>
+          )}
+          <DeleteMessage
+            isModalOpen={showDeleteMessage}
+            setModalOpen={setShowDeleteMessage}
+            confirmDelete={confirmDelete}
+          />
+        </div>
       </form>
     </div>
   );

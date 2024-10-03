@@ -2,7 +2,12 @@ import { useBookings } from "../context/bookingsContext";
 import MemberCard from "../components/MemberCard";
 import BookingWarper from "../components/BookingWarper";
 function BoardBooking() {
-  const { unclaimedMembers } = useBookings();
+  const {
+    unclaimedMembers,
+    firstContactMembers,
+    preparingWorkOffer,
+    sentToTherapists,
+  } = useBookings();
   return (
     <div className="  p-5 h-full ">
       <div className="flex flex-row text-white">
@@ -19,17 +24,59 @@ function BoardBooking() {
                   age={booking.age}
                   email={booking.email}
                   phone={booking.phone}
+                  title={booking.title}
+                  status={booking.status}
+                  id={booking.id}
                 />
               ))}
             </BookingWarper>
-            <BookingWarper count={0} title="First Contact">
-              <div></div>
+            <BookingWarper
+              count={firstContactMembers ? firstContactMembers.length : 0}
+              title="First Contact"
+            >
+              {firstContactMembers.map((booking, index) => (
+                <MemberCard
+                  key={index}
+                  name={booking.name}
+                  age={booking.age}
+                  email={booking.email}
+                  phone={booking.phone}
+                  title={booking.title}
+                  status={booking.status}
+                />
+              ))}
             </BookingWarper>
-            <BookingWarper count={0} title="Preparing Work Offer">
-              <div></div>
+            <BookingWarper
+              count={preparingWorkOffer ? preparingWorkOffer.length : 0}
+              title="Preparing Work Offer"
+            >
+              {preparingWorkOffer.map((booking, index) => (
+                <MemberCard
+                  key={index}
+                  name={booking.name}
+                  age={booking.age}
+                  email={booking.email}
+                  phone={booking.phone}
+                  title={booking.title}
+                  status={booking.status}
+                />
+              ))}
             </BookingWarper>
-            <BookingWarper count={0} title="Send to Therapists">
-              <div></div>
+            <BookingWarper
+              count={sentToTherapists ? sentToTherapists.length : 0}
+              title="Send to Therapists"
+            >
+              {sentToTherapists.map((booking, index) => (
+                <MemberCard
+                  key={index}
+                  name={booking.name}
+                  age={booking.age}
+                  email={booking.email}
+                  phone={booking.phone}
+                  title={booking.title}
+                  status={booking.status}
+                />
+              ))}
             </BookingWarper>
           </div>
         </div>

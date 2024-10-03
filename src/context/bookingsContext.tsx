@@ -71,6 +71,8 @@ const BookingsContextProvider = (props) => {
   }, [members]);
 
   const createNewBooking = (newMember) => {
+    const id = new Date().toISOString();
+    newMember.id = id;
     if (members === null) setMembers(JSON.stringify([newMember]));
     else {
       console.log("Members already exist", [...JSON.parse(members), newMember]);
@@ -79,12 +81,31 @@ const BookingsContextProvider = (props) => {
     console.log("unclaimedMembers", unclaimedMembers);
   };
 
+  const updateBooking = (id, updatedMember) => {
+    const updatedMembers = JSON.parse(members).map((member) => {
+      if (member.id === id) {
+        return updatedMember;
+      }
+      return member;
+    });
+    setMembers(JSON.stringify(updatedMembers));
+  };
+
+  const deleteBooking = (id) => {
+    const updatedMembers = JSON.parse(members).filter(
+      (member) => member.id !== id
+    );
+    setMembers(JSON.stringify(updatedMembers));
+  };
+
   const value = {
     unclaimedMembers,
     firstContactMembers,
     preparingWorkOffer,
     sentToTherapists,
     createNewBooking,
+    updateBooking,
+    deleteBooking,
   };
 
   return (
