@@ -43,6 +43,7 @@ function BoardBooking() {
                   phone={booking.phone}
                   title={booking.title}
                   status={booking.status}
+                  id={booking.id}
                 />
               ))}
             </BookingWarper>
@@ -59,6 +60,7 @@ function BoardBooking() {
                   phone={booking.phone}
                   title={booking.title}
                   status={booking.status}
+                  id={booking.id}
                 />
               ))}
             </BookingWarper>
@@ -75,6 +77,7 @@ function BoardBooking() {
                   phone={booking.phone}
                   title={booking.title}
                   status={booking.status}
+                  id={booking.id}
                 />
               ))}
             </BookingWarper>

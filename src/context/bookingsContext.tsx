@@ -82,12 +82,16 @@ const BookingsContextProvider = (props) => {
   };
 
   const updateBooking = (id, updatedMember) => {
+    console.log("updatedMember", updatedMember);
+    updatedMember.id = id;
     const updatedMembers = JSON.parse(members).map((member) => {
       if (member.id === id) {
+        console.log("member.id", member.id);
         return updatedMember;
       }
       return member;
     });
+    console.log("updatedMembers", updatedMembers);
     setMembers(JSON.stringify(updatedMembers));
   };
 

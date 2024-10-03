@@ -29,6 +29,8 @@ function CreateBookingForm({ bookingToEdit = {}, closeModal }) {
 
   const onSubmit = (data) => {
     if (isEditing) {
+      console.log(data);
+      data.id = bookingToEdit.id;
       bookings.updateBooking(bookingToEdit.id, data);
       alert("Form updated successfully!");
       closeModal();
@@ -147,6 +149,25 @@ function CreateBookingForm({ bookingToEdit = {}, closeModal }) {
               <p className="text-red-500 mt-1">{errors.phone.message}</p>
             )}
           </div>
+        </div>
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+          <label htmlFor="status" className="sm:basis-20">
+            Status:
+          </label>
+          {isEditing && (
+            <div className="grow">
+              <select
+                id="status"
+                {...register("status", { required: "Status is required" })}
+                className="input w-full"
+              >
+                <option value="unclaimed">Unclaimed</option>
+                <option value="firstContact">First Contact</option>
+                <option value="preparingWorkOffer">Preparing Work Offer</option>
+                <option value="sentToTherapists">Send to Therapists</option>
+              </select>
+            </div>
+          )}
         </div>
         <div>
           <Button type="primary">
