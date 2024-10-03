@@ -22,24 +22,12 @@ function BoardBooking() {
                 />
               ))}
             </BookingWarper>
-            {/* <div className="">
-              <b>First Contact</b>
-              <div className="bg-blue-500 border border-white h-full mt-2"></div>
-            </div> */}
             <BookingWarper count={0} title="First Contact">
               <div></div>
             </BookingWarper>
-            {/* <div className="">
-              <b>Preparing Work Offer</b>
-              <div className="bg-blue-500 border border-white h-full mt-2"></div>
-            </div> */}
             <BookingWarper count={0} title="Preparing Work Offer">
               <div></div>
             </BookingWarper>
-            {/* <div className="">
-              <b>Send to Therapists</b>
-              <div className="bg-blue-500 border border-white h-full mt-2"></div>
-            </div> */}
             <BookingWarper count={0} title="Send to Therapists">
               <div></div>
             </BookingWarper>
