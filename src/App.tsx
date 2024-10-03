@@ -3,13 +3,14 @@ import Home from "./pages/Home";
 import CreateBooking from "./pages/CreateBooking";
 import BoardBooking from "./pages/BoardBooking";
 import AppLayout from "./ui/AppLayout";
-
+import { BookingsContextProvider } from "./context/bookingsContext";
 
 function App() {
   return (
+    <BookingsContextProvider>
       <BrowserRouter>
         <Routes>
-        <Route element={<AppLayout />}>
+          <Route element={<AppLayout />}>
             <Route index element={<Navigate replace to="home" />} />
             <Route path="home" element={<Home />} />
             <Route path="create-booking" element={<CreateBooking />} />
@@ -17,6 +18,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+    </BookingsContextProvider>
   );
 }
 

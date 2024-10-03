@@ -1,5 +1,5 @@
 import { useState, createContext, useContext, useEffect } from "react";
-import useLocalStorage from "../Hooks/useLocalStorage.js";
+import useLocalStorage from "../hooks/useLocalStorage.js";
 
 const BookingsContext = createContext({
   unclaimedMembers: [],
@@ -70,7 +70,7 @@ const BookingsContextProvider = (props) => {
     }
   }, [members]);
 
-  const addNewMember = (newMember) => {
+  const createNewBooking = (newMember) => {
     if (members === null) setMembers(JSON.stringify([newMember]));
     else {
       console.log("Members already exist", [...JSON.parse(members), newMember]);
@@ -84,7 +84,7 @@ const BookingsContextProvider = (props) => {
     firstContactMembers,
     preparingWorkOffer,
     sentToTherapists,
-    addNewBooking,
+    createNewBooking,
   };
 
   return (
