@@ -1,8 +1,11 @@
-import { useForm } from "react-hook-form";
-import Button from "../ui/Button.js";
-import { useBookings } from "../context/bookingsContext.js";
-import DeleteMessage from "../ui/DeleteMessage.js";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useBookings } from "../context/bookingsContext.js";
+
+import toast from "react-hot-toast";
+
+import Button from "../ui/Button.js";
+import DeleteMessage from "../ui/DeleteMessage.js";
 function CreateBookingForm({ bookingToEdit = {}, closeModal }) {
   const isEditing = Object.keys(bookingToEdit).length > 0;
   const {
@@ -18,7 +21,7 @@ function CreateBookingForm({ bookingToEdit = {}, closeModal }) {
   const confirmDelete = (e) => {
     e.preventDefault();
     bookings.deleteBooking(bookingToEdit.id);
-    alert("Form deleted successfully!");
+    toast.success("Booking deleted successfully!");
     closeModal();
   };
 
@@ -32,13 +35,13 @@ function CreateBookingForm({ bookingToEdit = {}, closeModal }) {
       console.log(data);
       data.id = bookingToEdit.id;
       bookings.updateBooking(bookingToEdit.id, data);
-      alert("Form updated successfully!");
+      toast.success("Booking updated successfully!");
       closeModal();
     } else {
       data.status = "unclaimed";
       console.log(bookings);
       bookings.createNewBooking(data);
-      alert("Form submitted successfully!");
+      toast.success("Booking created successfully!");
       reset();
     }
   };
