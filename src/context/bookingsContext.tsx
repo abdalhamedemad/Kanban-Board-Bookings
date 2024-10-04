@@ -1,6 +1,14 @@
 import { useState, createContext, useContext, useEffect } from "react";
 import useLocalStorage from "../hooks/useLocalStorage.js";
-
+interface BookingMember {
+  id: string;
+  name: string;
+  age: number;
+  email: string;
+  phone: string;
+  status: string;
+  title: string;
+}
 const BookingsContext = createContext({
   unclaimedMembers: [],
   firstContactMembers: [],
@@ -11,66 +19,47 @@ const BookingsContext = createContext({
 const BookingsContextProvider = (props) => {
   const [members, setMembers] = useLocalStorage("members", null);
 
-  const [unclaimedMembers, setUnclaimedMembers] = useState(() => {
-    if (members !== null) {
-      return JSON.parse(members).filter(
-        (member) => member.status === "unclaimed"
-      );
-    }
-    return [];
-  });
+  const [unclaimedMembers, setUnclaimedMembers] = useState<BookingMember[]>([]);
 
-  const [firstContactMembers, setFirstContactMembers] = useState(() => {
-    if (members !== null) {
-      return JSON.parse(members).filter(
-        (member) => member.status === "firstContact"
-      );
-    }
-    return [];
-  });
+  const [firstContactMembers, setFirstContactMembers] = useState<
+    BookingMember[]
+  >([]);
 
-  const [preparingWorkOffer, setPreparingWorkOffer] = useState(() => {
-    if (members !== null) {
-      return JSON.parse(members).filter(
-        (member) => member.status === "preparingWorkOffer"
-      );
-    }
-    return [];
-  });
+  const [preparingWorkOffer, setPreparingWorkOffer] = useState<BookingMember[]>(
+    []
+  );
 
-  const [sentToTherapists, setSentToTherapists] = useState(() => {
-    if (members !== null) {
-      return JSON.parse(members).filter(
-        (member) => member.status === "sentToTherapists"
-      );
-    }
-    return [];
-  });
+  const [sentToTherapists, setSentToTherapists] = useState<BookingMember[]>([]);
+
   useEffect(() => {
     if (members !== null) {
       setUnclaimedMembers(
-        JSON.parse(members).filter((member) => member.status === "unclaimed")
+        JSON.parse(members).filter(
+          (member: BookingMember) => member.status === "unclaimed"
+        )
       );
 
       setFirstContactMembers(
-        JSON.parse(members).filter((member) => member.status === "firstContact")
+        JSON.parse(members).filter(
+          (member: BookingMember) => member.status === "firstContact"
+        )
       );
 
       setPreparingWorkOffer(
         JSON.parse(members).filter(
-          (member) => member.status === "preparingWorkOffer"
+          (member: BookingMember) => member.status === "preparingWorkOffer"
         )
       );
 
       setSentToTherapists(
         JSON.parse(members).filter(
-          (member) => member.status === "sentToTherapists"
+          (member: BookingMember) => member.status === "sentToTherapists"
         )
       );
     }
   }, [members]);
 
-  const createNewBooking = (newMember) => {
+  const createNewBooking = (newMember: BookingMember) => {
     const id = new Date().toISOString();
     newMember.id = id;
     if (members === null) setMembers(JSON.stringify([newMember]));
@@ -81,10 +70,10 @@ const BookingsContextProvider = (props) => {
     console.log("unclaimedMembers", unclaimedMembers);
   };
 
-  const updateBooking = (id, updatedMember) => {
+  const updateBooking = (id: string, updatedMember: BookingMember) => {
     console.log("updatedMember", updatedMember);
     updatedMember.id = id;
-    const updatedMembers = JSON.parse(members).map((member) => {
+    const updatedMembers = JSON.parse(members).map((member: BookingMember) => {
       if (member.id === id) {
         console.log("member.id", member.id);
         return updatedMember;
@@ -95,9 +84,9 @@ const BookingsContextProvider = (props) => {
     setMembers(JSON.stringify(updatedMembers));
   };
 
-  const deleteBooking = (id) => {
+  const deleteBooking = (id: string) => {
     const updatedMembers = JSON.parse(members).filter(
-      (member) => member.id !== id
+      (member: BookingMember) => member.id !== id
     );
     setMembers(JSON.stringify(updatedMembers));
   };

@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
-
-function Button({ children, disabled, to, type, onClick }) {
+import { ReactNode } from "react";
+interface ButtonProps {
+  children: ReactNode;
+  disabled?: boolean;
+  to?: string;
+  type: "primary" | "small" | "round" | "secondary" | "danger";
+  onClick?: () => void;
+}
+function Button({ children, disabled, to, type, onClick }: ButtonProps) {
   const base = `inline-block tex-sm  text-white rounded-full bg-[#476c98] font-semibold uppercase tracking-wide text-white transition-colors
    duration-300 hover:bg-[#5a85bb] focus:bg-[#5a85bb] focus:outline-none
    focus:ring focus:ring-[#5a85bb] focus:ring-offset-2

@@ -6,7 +6,24 @@ import toast from "react-hot-toast";
 
 import Button from "../ui/Button.js";
 import DeleteMessage from "../ui/DeleteMessage.js";
-function CreateBookingForm({ bookingToEdit = {}, closeModal }) {
+
+interface CreateBookingFormProps {
+  bookingToEdit?: {
+    name: string;
+    age: number;
+    email: string;
+    phone: string;
+    status: string;
+    title: string;
+    id: string;
+  };
+  closeModal: () => void;
+}
+
+function CreateBookingForm({
+  bookingToEdit = {},
+  closeModal,
+}: CreateBookingFormProps) {
   const isEditing = Object.keys(bookingToEdit).length > 0;
   const {
     register,
@@ -18,19 +35,19 @@ function CreateBookingForm({ bookingToEdit = {}, closeModal }) {
   });
   const bookings = useBookings();
   const [showDeleteMessage, setShowDeleteMessage] = useState(false);
-  const confirmDelete = (e) => {
+  const confirmDelete = (e: any) => {
     e.preventDefault();
     bookings.deleteBooking(bookingToEdit.id);
     toast.success("Booking deleted successfully!");
     closeModal();
   };
 
-  const handleDelete = (e) => {
+  const handleDelete = (e: any) => {
     e.preventDefault();
     setShowDeleteMessage(true);
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: { id: string; status: string }) => {
     if (isEditing) {
       console.log(data);
       data.id = bookingToEdit.id;
