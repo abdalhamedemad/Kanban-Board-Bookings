@@ -2,7 +2,7 @@ import Button from "../ui/Button";
 
 function Home() {
   return (
-    <div className="max-w-3xl mx-auto px-4 py-6 text-[#476c98] mt-5 font-mono">
+    <div className="max-w-3xl mx-auto px-4 py-9 text-[#476c98]  font-mono">
       <div className="flex flex-col items-center justify-center gap-16">
         <h1
           className="
