@@ -11,7 +11,7 @@ function Button({ children, disabled, to, type, onClick }: ButtonProps) {
   const base = `inline-block tex-sm  text-white rounded-full bg-[#476c98] font-semibold uppercase tracking-wide text-white transition-colors
    duration-300 hover:bg-[#5a85bb] focus:bg-[#5a85bb] focus:outline-none
    focus:ring focus:ring-[#5a85bb] focus:ring-offset-2
-   disabled:cursor-not-allowed `;
+   disabled:cursor-not-allowed text-[14px] `;
   const styles = {
     primary: base + " px-4 py-3 sm:px-6 sm:py-4  ",
     small: base + " px-4 py-1 md:px-5 md:py-2.5 text-xs ",

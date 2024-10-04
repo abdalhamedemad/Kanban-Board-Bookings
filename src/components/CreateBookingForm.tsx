@@ -64,7 +64,11 @@ function CreateBookingForm({
   };
   return (
     <div className={`flex flex-col gap-6 text-[#476c98]  font-mono `}>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form
+        onSubmit={handleSubmit(onSubmit, () =>
+          toast.error("Error Creating the Booking")
+        )}
+      >
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
           <label htmlFor="title" className="sm:basis-20 text-start ">
             Title:
