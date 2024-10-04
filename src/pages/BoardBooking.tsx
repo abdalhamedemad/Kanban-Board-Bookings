@@ -1,6 +1,16 @@
 import { useBookings } from "../context/bookingsContext";
 import MemberCard from "../components/MemberCard";
 import BookingWarper from "../components/BookingWarper";
+interface BookingMember {
+  id: string;
+  name: string;
+  age: number;
+  email: string;
+  phone: string;
+  status: string;
+  title: string;
+}
+
 function BoardBooking() {
   const {
     unclaimedMembers,
@@ -17,7 +27,7 @@ function BoardBooking() {
               count={unclaimedMembers ? unclaimedMembers.length : 0}
               title="Unclaimed"
             >
-              {unclaimedMembers.map((booking, index) => (
+              {unclaimedMembers.map((booking: BookingMember, index: string) => (
                 <MemberCard
                   key={index}
                   name={booking.name}
@@ -34,41 +44,45 @@ function BoardBooking() {
               count={firstContactMembers ? firstContactMembers.length : 0}
               title="First Contact"
             >
-              {firstContactMembers.map((booking, index) => (
-                <MemberCard
-                  key={index}
-                  name={booking.name}
-                  age={booking.age}
-                  email={booking.email}
-                  phone={booking.phone}
-                  title={booking.title}
-                  status={booking.status}
-                  id={booking.id}
-                />
-              ))}
+              {firstContactMembers.map(
+                (booking: BookingMember, index: string) => (
+                  <MemberCard
+                    key={index}
+                    name={booking.name}
+                    age={booking.age}
+                    email={booking.email}
+                    phone={booking.phone}
+                    title={booking.title}
+                    status={booking.status}
+                    id={booking.id}
+                  />
+                )
+              )}
             </BookingWarper>
             <BookingWarper
               count={preparingWorkOffer ? preparingWorkOffer.length : 0}
               title="Preparing Work Offer"
             >
-              {preparingWorkOffer.map((booking, index) => (
-                <MemberCard
-                  key={index}
-                  name={booking.name}
-                  age={booking.age}
-                  email={booking.email}
-                  phone={booking.phone}
-                  title={booking.title}
-                  status={booking.status}
-                  id={booking.id}
-                />
-              ))}
+              {preparingWorkOffer.map(
+                (booking: BookingMember, index: string) => (
+                  <MemberCard
+                    key={index}
+                    name={booking.name}
+                    age={booking.age}
+                    email={booking.email}
+                    phone={booking.phone}
+                    title={booking.title}
+                    status={booking.status}
+                    id={booking.id}
+                  />
+                )
+              )}
             </BookingWarper>
             <BookingWarper
               count={sentToTherapists ? sentToTherapists.length : 0}
               title="Send to Therapists"
             >
-              {sentToTherapists.map((booking, index) => (
+              {sentToTherapists.map((booking: BookingMember, index: string) => (
                 <MemberCard
                   key={index}
                   name={booking.name}

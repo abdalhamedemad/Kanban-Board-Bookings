@@ -7,7 +7,7 @@ import { useState } from "react";
  * @param {any} defaultValue The default value for the local storage
  * @returns {[any, Function]} A stored value and a function to update it
  */
-const useLocalStorage = (keyName, defaultValue) => {
+const useLocalStorage = (keyName: string, defaultValue: any) => {
   const [storedValue, setStoredValue] = useState(() => {
     try {
       const value = window.localStorage.getItem(keyName);
@@ -26,7 +26,7 @@ const useLocalStorage = (keyName, defaultValue) => {
     }
   });
 
-  const setValue = (newValue) => {
+  const setValue = (newValue: any) => {
     try {
       window.localStorage.setItem(keyName, JSON.stringify(newValue));
       setStoredValue(newValue);

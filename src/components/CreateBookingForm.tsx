@@ -22,7 +22,7 @@ interface CreateBookingFormProps {
 
 function CreateBookingForm({
   bookingToEdit = {},
-  closeModal,
+  closeModal = () => {},
 }: CreateBookingFormProps) {
   const isEditing = Object.keys(bookingToEdit).length > 0;
   const {

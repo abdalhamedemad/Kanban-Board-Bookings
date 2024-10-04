@@ -1,4 +1,12 @@
-function BookingWarper({ children, count, title }) {
+import { ReactNode } from "react";
+
+interface BookingWarperProps {
+  children: ReactNode;
+  count: number;
+  title: string;
+}
+
+function BookingWarper({ children, count, title }: BookingWarperProps) {
   return (
     <div className=" w-[21rem]">
       <div className="border border-white  rounded-md">

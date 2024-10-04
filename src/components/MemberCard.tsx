@@ -2,7 +2,25 @@ import Modal from "../ui/Modal";
 import CreateBookingForm from "./CreateBookingForm";
 import { useState } from "react";
 
-function MemberCard({ name, age, email, phone, status, title, id }) {
+interface MemberCardProps {
+  name: string;
+  age: number;
+  email: string;
+  phone: string;
+  status: string;
+  title: string;
+  id: string;
+}
+
+function MemberCard({
+  name,
+  age,
+  email,
+  phone,
+  status,
+  title,
+  id,
+}: MemberCardProps) {
   const [isModalOpen, setModalOpen] = useState(false);
 
   const openModal = () => setModalOpen(true);

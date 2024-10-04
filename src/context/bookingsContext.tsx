@@ -1,5 +1,5 @@
 import { useState, createContext, useContext, useEffect } from "react";
-import useLocalStorage from "../hooks/useLocalStorage.js";
+import useLocalStorage from "../hooks/useLocalStorage.ts";
 interface BookingMember {
   id: string;
   name: string;
@@ -9,14 +9,18 @@ interface BookingMember {
   status: string;
   title: string;
 }
-const BookingsContext = createContext({
-  unclaimedMembers: [],
-  firstContactMembers: [],
-  preparingWorkOffer: [],
-  sentToTherapists: [],
-});
+interface BookingsContextValue {
+  unclaimedMembers: BookingMember[];
+  firstContactMembers: BookingMember[];
+  preparingWorkOffer: BookingMember[];
+  sentToTherapists: BookingMember[];
+  createNewBooking: (newMember: BookingMember) => void;
+  updateBooking: (id: string, updatedMember: BookingMember) => void;
+  deleteBooking: (id: string) => void;
+}
+const BookingsContext = createContext<BookingsContextValue | {}>({});
 
-const BookingsContextProvider = (props) => {
+const BookingsContextProvider = (props: any) => {
   const [members, setMembers] = useLocalStorage("members", null);
 
   const [unclaimedMembers, setUnclaimedMembers] = useState<BookingMember[]>([]);
