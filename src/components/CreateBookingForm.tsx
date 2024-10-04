@@ -94,7 +94,17 @@ function CreateBookingForm({
             <input
               type="text"
               id="name"
-              {...register("name", { required: "Name is required" })}
+              {...register("name", {
+                required: "Name is required",
+                pattern: {
+                  value: /^[a-zA-Z\s]*$/,
+                  message: "Name must contain only letters",
+                },
+                minLength: {
+                  value: 3,
+                  message: "Name must be at least 3 characters long",
+                },
+              })}
               className="input w-full"
             />
             {errors.name && (
@@ -109,12 +119,12 @@ function CreateBookingForm({
           </label>
           <div className="grow">
             <input
-              type="text"
+              type="number"
               id="age"
               {...register("age", {
                 required: "Age is required",
                 pattern: {
-                  value: /^[0-9]+$/,
+                  value: /[0-9]+/,
                   message: "Age must be a number",
                 },
                 validate: (value) =>
@@ -158,7 +168,7 @@ function CreateBookingForm({
           </label>
           <div className="grow">
             <input
-              type="text"
+              type="tel"
               id="phone"
               {...register("phone", {
                 required: "Phone number is required",
