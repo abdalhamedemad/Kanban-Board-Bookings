@@ -8,7 +8,7 @@ function BookingWarper({ children, count, title }) {
             {count}
           </span>
         </div>
-        <div className="h-[35rem] mt-2 overflow-auto px-4 ">{children}</div>
+        <div className="max-h-[30rem] mt-2 overflow-auto px-4 ">{children}</div>
       </div>
     </div>
   );

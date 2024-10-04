@@ -46,7 +46,7 @@ function CreateBookingForm({ bookingToEdit = {}, closeModal }) {
     <div className="flex flex-col gap-6 ">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
-          <label htmlFor="title" className="sm:basis-20">
+          <label htmlFor="title" className="sm:basis-20 text-start ">
             Title:
           </label>
           <div className="grow">
@@ -63,7 +63,7 @@ function CreateBookingForm({ bookingToEdit = {}, closeModal }) {
         </div>
 
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
-          <label htmlFor="name" className="sm:basis-20">
+          <label htmlFor="name" className="sm:basis-20 text-start">
             Name:
           </label>
           <div className="grow">
@@ -80,7 +80,7 @@ function CreateBookingForm({ bookingToEdit = {}, closeModal }) {
         </div>
 
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
-          <label htmlFor="age" className="sm:basis-20">
+          <label htmlFor="age" className="sm:basis-20 text-start">
             Age:
           </label>
           <div className="grow">
@@ -106,7 +106,7 @@ function CreateBookingForm({ bookingToEdit = {}, closeModal }) {
         </div>
 
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
-          <label htmlFor="email" className="sm:basis-20">
+          <label htmlFor="email" className="sm:basis-20 text-start">
             Email:
           </label>
           <div className="grow">
@@ -129,7 +129,7 @@ function CreateBookingForm({ bookingToEdit = {}, closeModal }) {
         </div>
 
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
-          <label htmlFor="phone" className="sm:basis-20">
+          <label htmlFor="phone" className="sm:basis-20 text-start">
             Phone:
           </label>
           <div className="grow">
@@ -150,11 +150,12 @@ function CreateBookingForm({ bookingToEdit = {}, closeModal }) {
             )}
           </div>
         </div>
-        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
-          <label htmlFor="status" className="sm:basis-20">
-            Status:
-          </label>
-          {isEditing && (
+        {isEditing && (
+          <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
+            <label htmlFor="status" className="sm:basis-20 text-start">
+              Status:
+            </label>
+
             <div className="grow">
               <select
                 id="status"
@@ -167,17 +168,19 @@ function CreateBookingForm({ bookingToEdit = {}, closeModal }) {
                 <option value="sentToTherapists">Send to Therapists</option>
               </select>
             </div>
-          )}
-        </div>
+          </div>
+        )}
         <div>
-          <Button type="primary">
-            {isEditing ? "Update Booking" : "Create Booking"}
-          </Button>
-          {isEditing && (
-            <Button type="danger" onClick={handleDelete}>
-              Delete
+          <div className="flex items-center justify-start gap-2">
+            <Button type="primary">
+              {isEditing ? "Update Booking" : "Create Booking"}
             </Button>
-          )}
+            {isEditing && (
+              <Button type="danger" onClick={handleDelete}>
+                Delete
+              </Button>
+            )}
+          </div>
           <DeleteMessage
             isModalOpen={showDeleteMessage}
             setModalOpen={setShowDeleteMessage}

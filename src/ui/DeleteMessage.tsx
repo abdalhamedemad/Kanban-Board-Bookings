@@ -1,9 +1,6 @@
 import Modal from "./Modal";
-import { useState } from "react";
 
 function DeleteMessage({ confirmDelete, isModalOpen, setModalOpen }) {
-  // const [isModalOpen, setModalOpen] = useState(true);
-
   const openModal = () => setModalOpen(true);
   const closeModal = () => setModalOpen(false);
   return (
