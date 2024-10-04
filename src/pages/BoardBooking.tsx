@@ -11,8 +11,8 @@ function BoardBooking() {
   return (
     <div className="  p-5 h-full ">
       <div className="flex flex-row text-white">
-        <div className="flex flex-col w-full text-center">
-          <div className="grid grid-cols-4 gap-4">
+        <div className="flex justify-center items-center w-full text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center gap-4">
             <BookingWarper
               count={unclaimedMembers ? unclaimedMembers.length : 0}
               title="Unclaimed"

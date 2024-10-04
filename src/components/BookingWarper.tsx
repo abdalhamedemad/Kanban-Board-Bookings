@@ -1,6 +1,6 @@
 function BookingWarper({ children, count, title }) {
   return (
-    <div className="">
+    <div className=" w-[21rem]">
       <div className="border border-white  rounded-md">
         <div className="flex justify-between items-center text-gray-950 p-4 font-bold">
           <h4 className="text-lg font-semibold">{title}</h4>

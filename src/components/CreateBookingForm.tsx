@@ -46,7 +46,7 @@ function CreateBookingForm({ bookingToEdit = {}, closeModal }) {
     }
   };
   return (
-    <div className="flex flex-col gap-6 ">
+    <div className={`flex flex-col gap-6 text-[#476c98]  font-mono `}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
           <label htmlFor="title" className="sm:basis-20 text-start ">
@@ -119,7 +119,7 @@ function CreateBookingForm({ bookingToEdit = {}, closeModal }) {
               {...register("email", {
                 required: "Email is required",
                 pattern: {
-                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  value: /[^\s@]+@[^\s@]+\.[^\s@]+/,
                   message: "Please enter a valid email",
                 },
               })}
@@ -142,8 +142,8 @@ function CreateBookingForm({ bookingToEdit = {}, closeModal }) {
               {...register("phone", {
                 required: "Phone number is required",
                 pattern: {
-                  value: /^\d{10}$/,
-                  message: "Please enter a valid 10-digit phone number",
+                  value: /\d{11}/,
+                  message: "Please enter a valid 11-digit phone number",
                 },
               })}
               className="input w-full"
